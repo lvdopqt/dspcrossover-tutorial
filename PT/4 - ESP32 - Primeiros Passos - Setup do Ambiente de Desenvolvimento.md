@@ -11,29 +11,26 @@ Para começar o processo de desenvolvimento, vamos instalar o firmware de MicroP
 Na [documentação do MicroPython](https://docs.micropython.org), é possível encontrar o passo a passo de como fazer a instalação do firmware no ESP32. Em um breve resumo e tradução do que está presente na documentação:
 
   
-1. **Instalação do Python**:  
+## **Instalação do Python**:  
 
    Você precisa do Python instalado em sua máquina. Isso varia de acordo com o sistema operacional (OS) que você usa, mas [aqui](https://www.python.org/downloads/) você encontra como fazer isso para os OS mais populares.
 
   
 
-2. **Instalação do esptool**:  
+## **Instalação do esptool**:  
 
    Em um terminal, use o seguinte comando:  
 
-   ```bash
-
+```bash
    pip install esptool
+```
 
-   ```
 
-  
-
-3. **Conexão do ESP32**:  
+## **Conexão do ESP32**:  
 
    Conecte o ESP32 à máquina via USB.
 
-4. **Identificação da Porta**:  
+## **Identificação da Porta**:  
 
    Identifique qual porta o ESP32 está utilizando. [Neste artigo](link_do_artigo), é possível encontrar o procedimento para cada OS.
 
@@ -41,26 +38,25 @@ Na [documentação do MicroPython](https://docs.micropython.org), é possível e
 
    Apague o firmware da placa utilizando o comando:  
 
-  
-   ```bash 
-   esptool.py --chip esp32 --port /dev/ttyUSB0 erase_flash  
+```bash
+esptool.py --chip esp32 --port /dev/ttyUSB0 erase_flash  
 ```
   
    Substitua `ttyUSB0` pela porta identificada no passo anterior.
 
   
-6. **Download do Firmware**:  
+## **Download do Firmware**:  
 
    Faça o download da versão do firmware que deseja instalar. Por padrão, utilizo o último *release*. [Aqui](https://micropython.org/download/esp32/) você pode fazer o download do arquivo do firmware.
 
 
-7. **Instalação do Novo Firmware**: 
+## **Instalação do Novo Firmware**: 
 
    Para inserir o novo firmware, use o comando: 
 
    
-   ```bash
-   esptool.py --chip esp32 --port /dev/ttyUSB0 --baud 460800 write_flash -z 0x1000 esp32-20190125-v1.10.bin
+```bash
+esptool.py --chip esp32 --port /dev/ttyUSB0 --baud 460800 write_flash -z 0x1000 esp32-20190125-v1.10.bin
 ```
 
    Substitua `ttyUSB0` pela porta identificada e `esp32-20190125-v1.10.bin` pelo nome do arquivo do firmware baixado. Execute o comando e o ESP32 estará pronto para uso!
@@ -68,7 +64,7 @@ Na [documentação do MicroPython](https://docs.micropython.org), é possível e
 Para os próximos posts, vou utilizar o **VSCode** como editor de texto e a extensão **Pymakr** para agilizar e integrar a comunicação do ESP32 com o fluxo de escrita de código. No entanto, você pode utilizar o editor de texto que preferir e fazer a comunicação com o ESP32 da maneira que estiver mais habituado.
 
 
-### Conclusão
+## Conclusão
 
 Neste post, demos os primeiros passos para configurar o ESP32, um componente essencial do nosso projeto de processador de áudio. Instalamos o firmware do MicroPython, que será a base para a programação do microcontrolador, e preparamos o ambiente de desenvolvimento para as próximas etapas. A escolha do MicroPython traz vantagens significativas, como facilidade de uso, suporte a protocolos de comunicação e a possibilidade de otimização de código quando necessário.
 Com o ESP32 configurado, estamos prontos para avançar na integração com o ADAU1401, criando uma interface de controle dinâmica e funcional. Nos próximos posts, exploraremos como programar o ESP32 para ajustar parâmetros do DSP em tempo real, utilizando componentes como display LCD, encoder rotativo e botões. Essa integração permitirá uma experiência de uso mais interativa e personalizada, elevando o projeto a um novo patamar.
