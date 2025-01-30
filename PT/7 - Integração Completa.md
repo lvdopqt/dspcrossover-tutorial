@@ -1,3 +1,5 @@
+# 7 - Integração Completa
+
 
 ## **Instalação e Configuração**
 
@@ -25,9 +27,9 @@
 - **CrossoverService**: Calcula coeficientes de filtro (passa-baixa/alta) e configura o DSP. O service também salva o status dos filtros na memória não volátil, ou seja mesmo depois de desligado o sistema armazena os filtros setados
 
 
-![[Pasted image 20250130203043.png]]
+!Pasted image 20250130203043.png
 
-![[Pasted image 20250130203108.png]]
+!Pasted image 20250130203108.png
 ## **Expandindo o Projeto**
 
 - **Novos Filtros**: Adicione filtros passa-banda ou shelving em `features/crossover/service.py`.

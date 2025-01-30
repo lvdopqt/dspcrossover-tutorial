@@ -1,5 +1,8 @@
-Com o ambiente de desenvolvimento pronto já podemos começar a programar o software. Então para não começar do mais absoluto 0, vamos utilizar como base a lib  https://github.com/Wei1234c/SigmaDSP . O repositório _[[SigmaDSP]]_ é um pacote em Python desenvolvido para controlar os processadores de áudio digital ADAU1401 e ADAU1701 a partir de um PC ou [[ESP32]]. Ele permite a leitura de arquivos XML de projetos do SigmaStudio e a criação de objetos proxy que representam os algoritmos da Toolbox do SigmaStudio, possibilitando ajustes dinâmicos de parâmetros como frequência, nível em dB e coeficientes de filtros. O objetivo do projeto é viabilizar o ajuste automático de coeficientes de filtros sem depender exclusivamente do SigmaStudio, tornando o controle mais flexível e compatível com múltiplas plataformas, incluindo Windows, Linux, Raspberry Pi e [[ESP32]].
-Porém devido a aplicação genérica do projeto ele acaba não sendo ideal para aplicação embarcada onde a limitação de recursos é a base do desenvolvimento. Por isso na nossa aplicação específica vamos utilizar apenas a interface de comunicação com o [[DSP]] que foi desenvolvida para facilitar a comunicação entre o [[ESP32]] e a [[ADAU1401]]. Eu criei uma fork do projeto para facilitar a importação dessa parte que é interessante pra uma aplicação mais específica em https://github.com/lvdopqt/sigmadsp_minimal
+
+# ESP32 - Primeiro Programa
+
+Com o ambiente de desenvolvimento pronto já podemos começar a programar o software. Então para não começar do mais absoluto 0, vamos utilizar como base a lib  https://github.com/Wei1234c/SigmaDSP . O repositório _SigmaDSP_ é um pacote em Python desenvolvido para controlar os processadores de áudio digital ADAU1401 e ADAU1701 a partir de um PC ou ESP32. Ele permite a leitura de arquivos XML de projetos do SigmaStudio e a criação de objetos proxy que representam os algoritmos da Toolbox do SigmaStudio, possibilitando ajustes dinâmicos de parâmetros como frequência, nível em dB e coeficientes de filtros. O objetivo do projeto é viabilizar o ajuste automático de coeficientes de filtros sem depender exclusivamente do SigmaStudio, tornando o controle mais flexível e compatível com múltiplas plataformas, incluindo Windows, Linux, Raspberry Pi e ESP32.
+Porém devido a aplicação genérica do projeto ele acaba não sendo ideal para aplicação embarcada onde a limitação de recursos é a base do desenvolvimento. Por isso na nossa aplicação específica vamos utilizar apenas a interface de comunicação com o DSP que foi desenvolvida para facilitar a comunicação entre o ESP32 e a ADAU1401. Eu criei uma fork do projeto para facilitar a importação dessa parte que é interessante pra uma aplicação mais específica em https://github.com/lvdopqt/sigmadsp_minimal
 
 ## Configuração Inicial
 
@@ -10,7 +13,7 @@ mkdir dsp_application
 cd dsp_application
 git clone https://github.com/lvdopqt/sigmadsp_minimal
 ```
-*caso você não tenha o [[git]] instalado siga o tutorial https://github.com/git-guides/install-git
+*caso você não tenha o git instalado siga o tutorial https://github.com/git-guides/install-git
 
 ## Inicializando o Projeto
 
@@ -68,11 +71,11 @@ A estrutura de um filtro biquad é definida por cinco coeficientes principais: B
 
 A estrutura matemática de um filtro biquad é baseada em sua **função de transferência**, que descreve como o filtro processa o sinal de entrada para produzir o sinal de saída. Essa função de transferência é expressa como uma **razão de dois polinômios quadráticos**, ou seja, uma fração onde tanto o numerador quanto o denominador são polinômios de segunda ordem. A forma geral da função de transferência de um filtro biquad é:
 
-![[Pasted image 20250130193526.png]]
+!Pasted image 20250130193526.png
 
  O numerador (a parte de cima da função, onde estão os b) determina os **zeros** do filtro, enquanto o denominador (a parte de baixo) determina os **polos**. Os zˆ-1 representam o atraso de um sample.
 O filtro biquad também é comumente representado na seguinte forma gráfica
-![[Pasted image 20250130194149.png]]
+!Pasted image 20250130194149.png
 ### Polos e Zeros
 
 - **Zeros**: Os zeros de um filtro são as raízes do polinômio do numerador. Eles representam as frequências nas quais o filtro atenua completamente o sinal de entrada (ou seja, o ganho é zero). A localização dos zeros no plano complexo influencia diretamente a resposta em frequência do filtro, especialmente nas regiões de corte.
@@ -88,12 +91,12 @@ A resposta em frequência de um filtro biquad é determinada pela interação en
 
 ## Implementando Calculo de Coeficiente de Filtros
 
-A [[Analog Devices]] disponibiliza um documento de como calcular os coeficientes para diferentes filtros. 
+A Analog Devices disponibiliza um documento de como calcular os coeficientes para diferentes filtros. 
 https://ez.analog.com/cfs-file/__key/communityserver-wikis-components-files/00-00-00-01-75/1307.FilterMathCalculations.pdf
 
 Vamos fazer uma implementação simples de um filtro butterworth passa alta e um filtro passa baixa de primeira ordem baseada nesse documento! A definição dos filtros encontra-se abaixo
 
-![[Pasted image 20250130195415.png]]
+!Pasted image 20250130195415.png
 
 Agora vamos reescrever em micropython
 

@@ -1,7 +1,7 @@
 
 # Programando o DSP
 
-A placa de desenvolvimento da [[ADAU14/1701]] encontrada nas plataformas de venda chinesa possui em geral esse esquema.
+A placa de desenvolvimento da ADAU14/1701 encontrada nas plataformas de venda chinesa possui em geral esse esquema.
 
 ![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXf-BtzXrCPv1qZj9R8NTyYs0qSRPgcdQJB_4zomV8hIHu2bsHFXCQYP7ffJ75-HtAFjltnYQiLSjsbpCpsZsjeUCczC1hF8WFAf9WmPESB_8fMnS9EemmucdjVlblrhBJ1eNyHOUw?key=JqK6MG9S1obsx3xawZmOUk87)
 
@@ -11,7 +11,7 @@ A placa de desenvolvimento da [[ADAU14/1701]] encontrada nas plataformas de vend
 
 #### Componentes Principais
 
-No centro da placa, o [[ADAU1401]] é o coração do sistema, lidando com todas as operações de processamento de áudio. Ele é cercado por conectores que permitem:
+No centro da placa, o ADAU1401 é o coração do sistema, lidando com todas as operações de processamento de áudio. Ele é cercado por conectores que permitem:
 
 - Entradas e saídas digitais: SDATA0, SDATA1, SDATA2, e SDATA3 para transmissão e recepção de áudio digital.
 - Entradas analógicas: Conectores IN1 e IN2, acompanhados por conexões de terra (GND).
@@ -25,38 +25,38 @@ A placa opera com uma entrada de 5V e inclui reguladores de tensão e capacitore
 
 - Os pinos MP0 a MP11 (MP=Multi purpose) oferecem funcionalidades configuráveis para personalização de acordo com a aplicação. Você pode conectar botões, potenciometros, encoders etc
 - Um pino de Write Protect (WP) é utilizado para controlar a escrita na memória EEPROM. Esse pino é conectado ao Ground (GND) quando estamos executando uma escrita na memória que vai ser preservada mesmo quando a placa desligar! 
-- Os pinos (GND), [[SDA]] e [[SCL]] são utilizados para a comunicação via [[I2C]] ou [[SPI]].
+- Os pinos (GND), SDA e SCL são utilizados para a comunicação via I2C ou SPI.
 
 #### Cristal Oscilador
 
-A placa suporta um [[MCLK]] (Master Clock) externo. Caso opte por usar um clock externo é necessário que a taxa de amostragem configurada no software seja compatível com o oscilador.  A [[ADAU1701]] é capaz de processar até 8 canais simultâneos no domínio digital, e cada canal de áudio requer 32 bits (24 bits de dados + 8 bits de margem ou controle). Em uma taxa de amostragem de 96KHz o clock necessário seria de 24.576 MHz
+A placa suporta um MCLK (Master Clock) externo. Caso opte por usar um clock externo é necessário que a taxa de amostragem configurada no software seja compatível com o oscilador.  A ADAU1701 é capaz de processar até 8 canais simultâneos no domínio digital, e cada canal de áudio requer 32 bits (24 bits de dados + 8 bits de margem ou controle). Em uma taxa de amostragem de 96KHz o clock necessário seria de 24.576 MHz
 
 $Clock (MCLK)= Sample Rate× Bit Depth × Número de Canais$
 
   
 ## Programação da Placa
 
-A [[Analog Devices]] fabricante do [[DSP]] fornece um software chamado [[SimgaStudio]] que foi desenvolvido para projetar o fluxo em que o [[DSP]] vai trabalhar. Em muitas aplicações, somente essa etapa de programação é necessária.
+A Analog Devices fabricante do DSP fornece um software chamado SimgaStudio que foi desenvolvido para projetar o fluxo em que o DSP vai trabalhar. Em muitas aplicações, somente essa etapa de programação é necessária.
 
-  Infelizmente esse fluxo só é possível num sistema operacional [[Windows]], o que pra mim foi um pequeno obstáculo no projeto, mas o que me levou a buscar outras soluções e imaginar a programação desse dispositivo sendo realizada por outras máquinas que não fossem [[Windows]]. Mas vamos por partes e ver como o fluxo é feito através do [[SimgaStudio]] em um PC windows
+  Infelizmente esse fluxo só é possível num sistema operacional Windows, o que pra mim foi um pequeno obstáculo no projeto, mas o que me levou a buscar outras soluções e imaginar a programação desse dispositivo sendo realizada por outras máquinas que não fossem Windows. Mas vamos por partes e ver como o fluxo é feito através do SimgaStudio em um PC windows
 
-Para que seja feita a conexão entre o dispositivo e o PC precisamos utilizar um conversor [[I²C]] para [[USBi]], e instalar um driver apropriado na sua máquina. O fluxo utilizando o conversor [[I²C]] usb do ali express foi o seguinte:
+Para que seja feita a conexão entre o dispositivo e o PC precisamos utilizar um conversor I²C para USBi, e instalar um driver apropriado na sua máquina. O fluxo utilizando o conversor I²C usb do ali express foi o seguinte:
 
-- Conectei diretamente os pinos do USBi que contém o mesmo nome na placa [[SDA]], [[SCL]], [[GND]] e 5V([[VDD]]) e pluguei no PC. Estranhamente simples (?)
+- Conectei diretamente os pinos do USBi que contém o mesmo nome na placa SDA, SCL, GND e 5V(VDD) e pluguei no PC. Estranhamente simples (?)
 
 ![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXcZ3PIz22cUMxwHnsC0ShZrEcYyBVy28J4vZOmbtDAvohJbg4-nZfzca5RM_NclO8krmBoVBCdurwJsjxVsOwK9pC1QYtL7zijrO6HyndCoWcPOeYABFu6GMSKBHziqiqoVwoFcXg?key=JqK6MG9S1obsx3xawZmOUk87)
 
-Como alternativa a esse conversor [[USBi]] que sejam mais baratas é possível utilizar outros conversores de [[I²C]] para serial como módulos que utilizam o circuito integrado [CY7C68013A](https://pt.aliexpress.com/item/32875331830.html?spm=a2g0n.order_detail.order_detail_item.2.12524c7f5qdQy2&_gl=1*1iq26bs*_gcl_aw*R0NMLjE3MzA3NDAyMTAuQ2owS0NRaUFfcUc1QmhEVEFSSXNBQTBVSFNLOC1aN0tvSlR4elYyN0lRMlJqT1BrOFkwUG4wc2pCOFFTUXplUTRNZnpqM1VfQWhqWm55b2FBa2tvRUFMd193Y0I.*_gcl_dc*R0NMLjE3MzA3NDAyMTAuQ2owS0NRaUFfcUc1QmhEVEFSSXNBQTBVSFNLOC1aN0tvSlR4elYyN0lRMlJqT1BrOFkwUG4wc2pCOFFTUXplUTRNZnpqM1VfQWhqWm55b2FBa2tvRUFMd193Y0I.*_gcl_au*NjQyNjYyODk0LjE3MjQ1OTk4NDY.*_ga*MTkwNDM4MjI3My4xNjg4OTE3MzY2*_ga_VED1YSGNC7*MTczMDk4NzkzNi40OS4xLjE3MzA5ODc5NTcuMzkuMC4w&gatewayAdapt=glo2bra). Existe um [tutorial](https://daumemo.com/how-to-program-an-analog-devices-dsp/) específico descrevendo os detalhes dessa conexão e a instalação do driver e até tópicos que vamos cobrir um pouco aqui! Vale a pena ver!
+Como alternativa a esse conversor USBi que sejam mais baratas é possível utilizar outros conversores de I²C para serial como módulos que utilizam o circuito integrado [CY7C68013A](https://pt.aliexpress.com/item/32875331830.html?spm=a2g0n.order_detail.order_detail_item.2.12524c7f5qdQy2&_gl=1*1iq26bs*_gcl_aw*R0NMLjE3MzA3NDAyMTAuQ2owS0NRaUFfcUc1QmhEVEFSSXNBQTBVSFNLOC1aN0tvSlR4elYyN0lRMlJqT1BrOFkwUG4wc2pCOFFTUXplUTRNZnpqM1VfQWhqWm55b2FBa2tvRUFMd193Y0I.*_gcl_dc*R0NMLjE3MzA3NDAyMTAuQ2owS0NRaUFfcUc1QmhEVEFSSXNBQTBVSFNLOC1aN0tvSlR4elYyN0lRMlJqT1BrOFkwUG4wc2pCOFFTUXplUTRNZnpqM1VfQWhqWm55b2FBa2tvRUFMd193Y0I.*_gcl_au*NjQyNjYyODk0LjE3MjQ1OTk4NDY.*_ga*MTkwNDM4MjI3My4xNjg4OTE3MzY2*_ga_VED1YSGNC7*MTczMDk4NzkzNi40OS4xLjE3MzA5ODc5NTcuMzkuMC4w&gatewayAdapt=glo2bra). Existe um [tutorial](https://daumemo.com/how-to-program-an-analog-devices-dsp/) específico descrevendo os detalhes dessa conexão e a instalação do driver e até tópicos que vamos cobrir um pouco aqui! Vale a pena ver!
 
-Depois de fazer o [download e a instalação do SigmaStudio](https://www.analog.com/en/resources/evaluation-hardware-and-software/software/ss_sigst_02.html). (No momento que escrevi isso estava usando a versão 4.7) Ao abrir o software ele apresenta a tela inicial do programa. Da aba Tree ToolBox vamos selecionar os elementos ADAU1401, [[E2PRom]] da seção Processors (ICs / DSPs), e o USBi da seção Communication Channels. A tela deve ficar assim:
+Depois de fazer o [download e a instalação do SigmaStudio](https://www.analog.com/en/resources/evaluation-hardware-and-software/software/ss_sigst_02.html). (No momento que escrevi isso estava usando a versão 4.7) Ao abrir o software ele apresenta a tela inicial do programa. Da aba Tree ToolBox vamos selecionar os elementos ADAU1401, E2PRom da seção Processors (ICs / DSPs), e o USBi da seção Communication Channels. A tela deve ficar assim:
 
-  ![[Pasted image 20250127191631.png]]
+  !Pasted image 20250127191631.png
   
 
 Agora é só clicar em schematic e começar a desenhar o fluxo da aplicação! Resolvi criar uma primeira aplicação para testar as entradas e saídas da placa. Selecionei da Tree ToolBox os elementos Input e Output. Então conectei os dois e salvei o programa no DSP (opção Link, Compile and Download). Note que para salvar definitivamente o programa é necessário mais uma etapa que faremos em breve!
 
 
-![[Pasted image 20250127191735.png]]  
+!Pasted image 20250127191735.png  
 
 No lado físico do DSP conectei IN_1 e GND a uma entrada Jack P10, assim como a saída OUT_1 e GND. Bom, agora vamos testar a aplicação que fizemos, e ao mesmo tempo o componente que utilizamos.
 
@@ -173,11 +173,11 @@ Agora vamos fazer o software que vai ser colocado de forma definitiva no DSP!
 
 Criei um schema no Sigma Studio que ficou dessa forma:
 
-![[Pasted image 20250127192259.png]]
+!Pasted image 20250127192259.png
 
 Clicando no gráfico do componente do Crossover ajustei os filtros de crossover para o corte em 500Hz . “Link Compile and Download”. 
 
-![[Pasted image 20250127192312.png]]
+!Pasted image 20250127192312.png
 
 Vamos também salvar o software na memória do DSP para que continue funcionando depois de reiniciado. Voltamos em Hardware Configuration, clicando com o botão direito no IC 1 (ADAU1401), “Write Latest Compilation to E2PROM”. Antes de clicar no OK na tela de prompt apresentada, faça um jump entre WP e GND conforme a imagem abaixo. Isso permite que o DSP salve configurações de maneira permanente na memória.
 
