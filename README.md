@@ -2,6 +2,7 @@
 
 ## Overview
 This repository provides a step-by-step guide for integrating the ESP32 microcontroller with a DSP (Digital Signal Processor), focusing on communication protocols, programming, and interface control. The tutorial is available in both English (EN) and Portuguese (PT), covering essential topics such as I²C, I²S, SPI, ESP32 setup, DSP programming, and interface design with LCD, rotary encoders, and buttons.
+The final result for this tutorial is in this repository: https://github.com/lvdopqt/dspcrossover
 
 
 ## How to Use This Repository
