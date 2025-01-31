@@ -49,14 +49,12 @@ Para que seja feita a conexão entre o dispositivo e o PC precisamos utilizar um
 Como alternativa a esse conversor USBi que sejam mais baratas é possível utilizar outros conversores de I²C para serial como módulos que utilizam o circuito integrado [CY7C68013A](https://pt.aliexpress.com/item/32875331830.html?spm=a2g0n.order_detail.order_detail_item.2.12524c7f5qdQy2&_gl=1*1iq26bs*_gcl_aw*R0NMLjE3MzA3NDAyMTAuQ2owS0NRaUFfcUc1QmhEVEFSSXNBQTBVSFNLOC1aN0tvSlR4elYyN0lRMlJqT1BrOFkwUG4wc2pCOFFTUXplUTRNZnpqM1VfQWhqWm55b2FBa2tvRUFMd193Y0I.*_gcl_dc*R0NMLjE3MzA3NDAyMTAuQ2owS0NRaUFfcUc1QmhEVEFSSXNBQTBVSFNLOC1aN0tvSlR4elYyN0lRMlJqT1BrOFkwUG4wc2pCOFFTUXplUTRNZnpqM1VfQWhqWm55b2FBa2tvRUFMd193Y0I.*_gcl_au*NjQyNjYyODk0LjE3MjQ1OTk4NDY.*_ga*MTkwNDM4MjI3My4xNjg4OTE3MzY2*_ga_VED1YSGNC7*MTczMDk4NzkzNi40OS4xLjE3MzA5ODc5NTcuMzkuMC4w&gatewayAdapt=glo2bra). Existe um [tutorial](https://daumemo.com/how-to-program-an-analog-devices-dsp/) específico descrevendo os detalhes dessa conexão e a instalação do driver e até tópicos que vamos cobrir um pouco aqui! Vale a pena ver!
 
 Depois de fazer o [download e a instalação do SigmaStudio](https://www.analog.com/en/resources/evaluation-hardware-and-software/software/ss_sigst_02.html). (No momento que escrevi isso estava usando a versão 4.7) Ao abrir o software ele apresenta a tela inicial do programa. Da aba Tree ToolBox vamos selecionar os elementos ADAU1401, E2PRom da seção Processors (ICs / DSPs), e o USBi da seção Communication Channels. A tela deve ficar assim:
-
-  !Pasted image 20250127191631.png
+<img src="../Images/Pasted image 20250127191631.png"/>
   
 
 Agora é só clicar em schematic e começar a desenhar o fluxo da aplicação! Resolvi criar uma primeira aplicação para testar as entradas e saídas da placa. Selecionei da Tree ToolBox os elementos Input e Output. Então conectei os dois e salvei o programa no DSP (opção Link, Compile and Download). Note que para salvar definitivamente o programa é necessário mais uma etapa que faremos em breve!
 
-
-!Pasted image 20250127191735.png  
+<img src="../Images/Pasted image 20250127191735.png"/>
 
 No lado físico do DSP conectei IN_1 e GND a uma entrada Jack P10, assim como a saída OUT_1 e GND. Bom, agora vamos testar a aplicação que fizemos, e ao mesmo tempo o componente que utilizamos.
 
@@ -173,11 +171,12 @@ Agora vamos fazer o software que vai ser colocado de forma definitiva no DSP!
 
 Criei um schema no Sigma Studio que ficou dessa forma:
 
-!Pasted image 20250127192259.png
+<img src="../Images/Pasted image 20250127192259.png"/>
+
 
 Clicando no gráfico do componente do Crossover ajustei os filtros de crossover para o corte em 500Hz . “Link Compile and Download”. 
 
-!Pasted image 20250127192312.png
+<img src="../Images/Pasted image 20250127192312.png"/>
 
 Vamos também salvar o software na memória do DSP para que continue funcionando depois de reiniciado. Voltamos em Hardware Configuration, clicando com o botão direito no IC 1 (ADAU1401), “Write Latest Compilation to E2PROM”. Antes de clicar no OK na tela de prompt apresentada, faça um jump entre WP e GND conforme a imagem abaixo. Isso permite que o DSP salve configurações de maneira permanente na memória.
 

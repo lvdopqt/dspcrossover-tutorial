@@ -6,11 +6,11 @@
 ### **1. Pré-requisitos**
 
 - **Hardware**:
-    - Todo hardware usado está descrito na parte 1 do projeto, pode voltar lá para conferir!
+    - Todo hardware usado está descrito [na parte 1 do projeto](1%20-%20Introdução.md), pode voltar lá para conferir!
     - Conexões conforme esquemático (`docs/schematics.pdf`).
 
 - **Software**:
-    - MicroPython instalado no ESP32. (Parte 4 do tutorial)
+    - MicroPython instalado no ESP32. [Parte 4 do tutorial](4%20-%20ESP32%20-%20Primeiros%20Passos%20-%20Setup%20do%20Ambiente%20de%20Desenvolvimento.md)
     - Clone a biblioteca e salve no ESP32:
         `git clone https://github.com/seu-usuario/dsp-crossover-project`
 
@@ -26,10 +26,9 @@
 - **LCD**: Exibe menus e status
 - **CrossoverService**: Calcula coeficientes de filtro (passa-baixa/alta) e configura o DSP. O service também salva o status dos filtros na memória não volátil, ou seja mesmo depois de desligado o sistema armazena os filtros setados
 
+<img src="../Images/Pasted image 20250130203043.png" width=600px />
+<img src="../Images/Pasted%20image%2020250130203108.png" width=600px />
 
-!Pasted image 20250130203043.png
-
-!Pasted image 20250130203108.png
 ## **Expandindo o Projeto**
 
 - **Novos Filtros**: Adicione filtros passa-banda ou shelving em `features/crossover/service.py`.

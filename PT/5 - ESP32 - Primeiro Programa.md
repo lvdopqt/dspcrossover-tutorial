@@ -71,11 +71,12 @@ A estrutura de um filtro biquad é definida por cinco coeficientes principais: B
 
 A estrutura matemática de um filtro biquad é baseada em sua **função de transferência**, que descreve como o filtro processa o sinal de entrada para produzir o sinal de saída. Essa função de transferência é expressa como uma **razão de dois polinômios quadráticos**, ou seja, uma fração onde tanto o numerador quanto o denominador são polinômios de segunda ordem. A forma geral da função de transferência de um filtro biquad é:
 
-!Pasted image 20250130193526.png
+<img src="../Images/Pasted image 20250130193526.png"/>
 
  O numerador (a parte de cima da função, onde estão os b) determina os **zeros** do filtro, enquanto o denominador (a parte de baixo) determina os **polos**. Os zˆ-1 representam o atraso de um sample.
 O filtro biquad também é comumente representado na seguinte forma gráfica
-!Pasted image 20250130194149.png
+<img src="../Images/Pasted image 20250130194149.png"/>
+
 ### Polos e Zeros
 
 - **Zeros**: Os zeros de um filtro são as raízes do polinômio do numerador. Eles representam as frequências nas quais o filtro atenua completamente o sinal de entrada (ou seja, o ganho é zero). A localização dos zeros no plano complexo influencia diretamente a resposta em frequência do filtro, especialmente nas regiões de corte.
@@ -96,7 +97,7 @@ https://ez.analog.com/cfs-file/__key/communityserver-wikis-components-files/00-0
 
 Vamos fazer uma implementação simples de um filtro butterworth passa alta e um filtro passa baixa de primeira ordem baseada nesse documento! A definição dos filtros encontra-se abaixo
 
-!Pasted image 20250130195415.png
+<img src="../Images/Pasted image 20250130195415.png"/>
 
 Agora vamos reescrever em micropython
 
