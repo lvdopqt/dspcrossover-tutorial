@@ -7,7 +7,7 @@
 
 - **Hardware**:
     - Todo hardware usado está descrito [na parte 1 do projeto](1%20-%20Introdução.md), pode voltar lá para conferir!
-    - Conexões conforme esquemático (`docs/schematics.pdf`).
+    - Conexões conforme esquemático (`https://github.com/lvdopqt/dspcrossover/blob/master/docs/Audio%20Processor%20-%20Schematics%20-%20Rev002.pdff`).
 
 - **Software**:
     - MicroPython instalado no ESP32. [Parte 4 do tutorial](4%20-%20ESP32%20-%20Primeiros%20Passos%20-%20Setup%20do%20Ambiente%20de%20Desenvolvimento.md)
